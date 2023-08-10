@@ -7,17 +7,17 @@ Nikon Picture Controls (PC) can have two tone curves:
     -   0x03C2: NEUTRAL
     -   0x00C3: VIVID
     - See [dumpncp.pl](https://github.com/simeonpilgrim/nikon-firmware-tools/blob/master/nfiles/dumpncp.pl "dumpncp.pl") for a full list
--   Optional: A user-defined curve (UDC), which is implemented as a 257-entry luminosity-only 1D LUT. Users are unaware of this LUT - they instead create their user-defined curves using a curve GUI representation, where they can set up to 20 spline points, which are converted into the LUT by the utility using [cubic spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation "cubic spline interpolation").
+-   Optional: A user-defined curve (UDC), which is implemented as a 257-entry luminosity-only 1D LUT. Users are unaware of this LUT - they instead create their user-defined curves using a curve GUI representation, where they can set up to 20 spline points, which are automatically converted into the LUT by the utility using [cubic spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation "cubic spline interpolation").
 
 The TRC operates in raw linear space. Its principal responsibility is to shift middle gray from its Nikon-metered 8.8% scene-referred luminance to 18%. It also establishes the basic contrast of the image, which can range from low contrast ("flat" PC) to high contrast ("vivid" PC). 
 
-To produce a JPG, the camera starts with the raw data, after it's been debayered and converted into a colormetric space but before the TRC and gamma (sRGB) have been applied. In other words, a color image in linear raw space. Next the camera applies the TRC. Then the image data is converted into a non-linear gamma color space, sRGB with a 1/2.4 gamma. Here's an animation showing these three phases:
+To produce a JPG, the camera starts with the raw data, after it's been debayered and converted into a colormetric space but before the TRC and gamma (sRGB) have been applied. In other words, a color image in linear raw space. Next the camera applies the TRC. Then the image data is converted into a non-linear gamma color space, sRGB with a 1/2.4 gamma. Here's an animation showing the output of each phase:
 ![Raw before TRC, after TRC, and after sRGB 1/2.4 gamma](https://photos.smugmug.com/photos/i-NvJXL94/0/a5f406bd/O/i-NvJXL94.png)
 
 Finally, the camera applies the PC settings including the optional UDC. The next section describes how the UDC is defined and applied.
 
 ### User-Defined Curve LUT
-The user-defined curve is represented by a 257-entry 1D luminosity-only LUT. Unlike the TRC curve, which operates on raw linear data, the UDC operates on the post-sRGB 1/2.4 gamma data. Both the input and output of the UDC LUT are sRGB 1/2.4 gamma, ie non-linear. This presents a challenge if we want to create a UDC that has a specific mathematical transform, such as a log profile LUT, or a LUT with EV-accurate brightness adjustments such as ISOless preview LUTs. The solution is to perform the LUT adjustments in linear space, converting from sRGB -> Linear before the adjustments and back to sRGB after.
+The user-defined curve is represented by a 257-entry 1D luminosity-only LUT. Unlike the TRC curve, which operates on raw linear image data, the UDC operates on the post-sRGB 1/2.4 gamma data. Both the input and output of the UDC LUT are sRGB 1/2.4 gamma, ie non-linear. This presents a challenge if we want to create a UDC that has a specific mathematical transform, such as a log profile LUT, or a LUT with EV-accurate brightness adjustments such as ISOless preview LUTs. The solution is to perform the LUT adjustments in linear space, converting from sRGB -> Linear before the adjustments and back to sRGB after.
 
 Here's a representation of a "blank" LUT, where the input and output brightness are equal. The x-axis represents the input brightness and the y-axis the output brightness. 
 ![Blank LUT, where input and output brightness are equal](https://photos.smugmug.com/photos/i-MG63kNQ/0/3378246c/L/i-MG63kNQ-L.png)
@@ -57,6 +57,6 @@ This repository includes a spreadsheet that performs these calculations for you.
 ![LUT calculation sheet for +5EV increase of brightness](https://photos.smugmug.com/photos/i-SLHrg54/0/f0d7f47a/O/i-SLHrg54.png)
 ### Issues
 #### Nikon's application of LUT changes saturation
-When Nikon applies the User-Defined Curve it does so in a matter that doesn't preserve saturation. As a result, any UDC that lowers the brightness will cause saturation to be increased, whereas UDC's that increase brightness cause saturation to be decreased. This is not unique to our direct modification of the LUT - it also occurs for curve's created using Nikon's own utilities.
+When Nikon applies the User-Defined Curve it does so in a manner that doesn't preserve saturation. As a result, any UDC that lowers the brightness will cause saturation to be increased, whereas UDC's that increase brightness cause saturation to be decreased. This is not unique to our direct modification of the LUT - it also occurs for curve's created using Nikon's own utilities.
 
 Ideally we would want the LUT to be applied to luminosity only, via a formula such as `New_LUT_Value/Old_LUT_Value` applied/scaled to each of the RGB values. What Nikon appears to be doing instead is calculating the luminance from the weighted RGB values and applying the LUT delta in that weighted space, which causes the saturation to be changed.
