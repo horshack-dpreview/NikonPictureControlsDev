@@ -75,5 +75,6 @@ Ideally we would want the LUT to be applied to luminosity only, via a formula su
 Special thanks to the following individuals:
 
  - [Jim Kasson](https://blog.kasson.com/)
+ - [Bill Claff](https://www.photonstophotos.net/)
  - [Iliah Borg](https://www.rawdigger.com/)
  - [Jack Hogan](https://www.strollswithmydog.com/)
