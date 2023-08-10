@@ -6,7 +6,7 @@
 |[Horshack_Linear.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_Linear.NCP)|Picture Control with no base Tonal Response Curve, ie "linear"|
 |[Horshack_RawLinear.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_RawLinear.NCP)|Same as linear PC but with sRGB 1/2.4 gamma removed as well, ie raw linear values with no perceptual gamma added|
 |[Horshack_ISOless_5EV.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_ISOless_5EV.NCP)|Adds 5EV (stops) of exposure to image, for use in ISOless shooting where you're exposing at -5EV during shooting, with intentions for increasing exposure in post (proof-of-concept only - currently keeps highlights blown|
-|||
+
 
 ## Nikon Picture Control Curves
 
@@ -70,3 +70,10 @@ This repository includes a spreadsheet that performs these calculations for you.
 When Nikon applies the User-Defined Curve it does so in a manner that doesn't preserve saturation. As a result, any UDC that lowers the brightness will cause saturation to be increased, whereas UDC's that increase brightness cause saturation to be decreased. This is not unique to our direct modification of the LUT - it also occurs for curve's created using Nikon's own utilities.
 
 Ideally we would want the LUT to be applied to luminosity only, via a formula such as `New_LUT_Value/Old_LUT_Value` applied/scaled to each of the RGB values. What Nikon appears to be doing instead is calculating the luminance from the weighted RGB values and applying the LUT delta in that weighted space, which causes the saturation to be changed.
+
+## Credits
+Special thanks to the following individuals:
+
+ - [Jim Kasson](https://blog.kasson.com/)
+ - [Iliah Borg](https://www.rawdigger.com/)
+ - [Jack Hogan](https://www.strollswithmydog.com/)
