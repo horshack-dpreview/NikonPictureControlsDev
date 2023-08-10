@@ -55,3 +55,8 @@ Here is a graph of the Neutral TRC, sRGB 1/2.4, and both (plotted in solid lines
 ### Tools
 This repository includes a spreadsheet that performs these calculations for you. You can simply add columns to the existing sheet to perform your desired transform. The sheet will generate the actual LUT output hex values as the final step. For example, here's the tab that performs an ISOless +5EV push: 
 ![LUT calculation sheet for +5EV increase of brightness](https://photos.smugmug.com/photos/i-SLHrg54/0/f0d7f47a/O/i-SLHrg54.png)
+### Issues
+#### Nikon's application of LUT changes saturation
+When Nikon applies the User-Defined Curve it does so in a matter that doesn't preserve saturation. As a result, any UDC that lowers the brightness will cause saturation to be increased, whereas UDC's that increase brightness cause saturation to be decreased. This is not unique to our direct modification of the LUT - it also occurs for curve's created using Nikon's own utilities.
+
+Ideally we would want the LUT to be applied to luminosity only, via a formula such as `New_LUT_Value/Old_LUT_Value` applied/scaled to each of the RGB values. What Nikon appears to be doing instead is calculating the luminance from the weighted RGB values and applying the LUT delta in that weighted space, which causes the saturation to be changed.
