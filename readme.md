@@ -1,3 +1,13 @@
+## My Custom Picture Controls
+|Name|Purpose|
+|--|--|
+|[Horshack_Shadow_Highlights.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_Shadow_Highlights.NCP)|Shows clipped highlights as black and clipped shadows as white|
+|[Horshack_Invert.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_Invert.NCP)|Inverts all tones, ie shadows become highlights, highlights become shadows, all tones in between swap as well|
+|[Horshack_Linear.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_Linear.NCP)|Picture Control with no base Tonal Response Curve, ie "linear"|
+|[Horshack_RawLinear.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_RawLinear.NCP)|Same as linear PC but with sRGB 1/2.4 gamma removed as well, ie raw linear values with no perceptual gamma added|
+|[Horshack_ISOless_5EV.NCP](https://github.com/horshack-dpreview/NikonPictureControlsDev/raw/main/Picture%20Controls/Horshack_ISOless_5EV.NCP)|Adds 5EV (stops) of exposure to image, for use in ISOless shooting where you're exposing at -5EV during shooting, with intentions for increasing exposure in post (proof-of-concept only - currently keeps highlights blown|
+|||
+
 ## Nikon Picture Control Curves
 
 Nikon Picture Controls (PC) can have two tone curves:
