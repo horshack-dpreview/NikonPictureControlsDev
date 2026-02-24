@@ -30,7 +30,7 @@ Finally, the camera applies the PC settings including the optional UDC. The next
 The user-defined curve is represented by a 257-entry 1D luminosity-only LUT. Unlike the TRC curve, which operates on raw linear image data, the UDC operates on the post-sRGB 1/2.4 gamma data. Both the input and output of the UDC LUT are sRGB 1/2.4 gamma, ie non-linear. This presents a challenge if we want to create a UDC that has a specific mathematical transform, such as a log profile LUT, or a LUT with EV-accurate brightness adjustments such as ISOless preview LUTs. The solution is to perform the LUT adjustments in linear space, converting from sRGB -> Linear before the adjustments and back to sRGB after.
 
 Here's a representation of a "blank" LUT, where the input and output brightness are equal. The x-axis represents the input brightness and the y-axis the output brightness. 
-![Blank LUT, where input and output brightness are equal](https://photos.smugmug.com/photos/i-MG63kNQ/0/3378246c/L/i-MG63kNQ-L.png)
+![Blank LUT, where input and output brightness are equal](docs/Nikon_Picture_Control_LUT_Default_Values.png)
 
 Note that both the input LUT index (0-256) and output LUT value (0-32,767) represent brightness levels, just at different scales. 
 
@@ -78,4 +78,5 @@ Special thanks to the following individuals:
  - [Bill Claff](https://www.photonstophotos.net/)
  - [Iliah Borg](https://www.rawdigger.com/)
  - [Jack Hogan](https://www.strollswithmydog.com/)
+
 
