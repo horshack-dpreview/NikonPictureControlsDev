@@ -60,11 +60,11 @@ Additionally, if we want to perform a transform that excludes the TRC already in
  5. Linear Light -> sRGB 1/2.4 LUT value
  
 Here is a graph of the Neutral TRC, sRGB 1/2.4, and both (plotted in solid lines), along with their inversion curves (plotted in dashed lines). Note that I'm presently using Adobe's camera-matching Neutral curve in place of Nikon's actual Neutral curve because Nikon's curve is not published and must be reversed engineered (on my to-do list):
-![Nikon Neutral TRC and sRGB curves + inverses plotted](https://photos.smugmug.com/photos/i-mx5tzH5/0/f6ce4630/L/i-mx5tzH5-L.png)
+![Nikon Neutral TRC and sRGB curves + inverses plotted](docs/Nikon_Neutral_TRC_and_sRGB_Curves_Including_Inverse.png)
 
 ### Tools
 This repository includes a spreadsheet that performs these calculations for you. You can simply add columns to the existing sheet to perform your desired transform. The sheet will generate the actual LUT output hex values as the final step. For example, here's the tab that performs an ISOless +5EV push: 
-![LUT calculation sheet for +5EV increase of brightness](https://photos.smugmug.com/photos/i-SLHrg54/0/f0d7f47a/O/i-SLHrg54.png)
+![LUT calculation sheet for +5EV increase of brightness](docs/ISOless_Picture_Control_Calcs.png)
 ### Issues
 #### Nikon's application of LUT changes saturation
 When Nikon applies the User-Defined Curve it does so in a manner that doesn't preserve saturation. As a result, any UDC that lowers the brightness will cause saturation to be increased, whereas UDC's that increase brightness cause saturation to be decreased. This is not unique to our direct modification of the LUT - it also occurs for curve's created using Nikon's own utilities.
@@ -78,6 +78,7 @@ Special thanks to the following individuals:
  - [Bill Claff](https://www.photonstophotos.net/)
  - [Iliah Borg](https://www.rawdigger.com/)
  - [Jack Hogan](https://www.strollswithmydog.com/)
+
 
 
 
