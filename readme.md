@@ -22,7 +22,7 @@ Nikon Picture Controls (PC) can have two tone curves:
 The TRC operates in raw linear space. Its principal responsibility is to shift middle gray from its Nikon-metered 8.8% scene-referred luminance to 18%. It also establishes the basic contrast of the image, which can range from low contrast ("flat" PC) to high contrast ("vivid" PC). 
 
 To produce a JPG, the camera starts with the raw data, after it's been debayered and converted into a colormetric space but before the TRC and gamma (sRGB) have been applied. In other words, a color image in linear raw space. Next the camera applies the TRC. Then the image data is converted into a non-linear gamma color space, sRGB with a 1/2.4 gamma. Here's an animation showing the output of each phase:
-![Raw before TRC, after TRC, and after sRGB 1/2.4 gamma](https://photos.smugmug.com/photos/i-NvJXL94/0/a5f406bd/O/i-NvJXL94.png)
+![Raw before TRC, after TRC, and after sRGB 1/2.4 gamma](docs/Raw_Before_TRC_vs_After_TRC_vs_After_sRGB.png)
 
 Finally, the camera applies the PC settings including the optional UDC. The next section describes how the UDC is defined and applied.
 
@@ -78,3 +78,4 @@ Special thanks to the following individuals:
  - [Bill Claff](https://www.photonstophotos.net/)
  - [Iliah Borg](https://www.rawdigger.com/)
  - [Jack Hogan](https://www.strollswithmydog.com/)
+
