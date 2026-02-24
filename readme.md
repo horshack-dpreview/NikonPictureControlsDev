@@ -41,7 +41,7 @@ Note that both the input LUT index (0-256) and output LUT value (0-32,767) repre
  
 It's important to understand the relationship between the sRGB 1/2.4 gamma LUT values and the linear raw data which produce it. Here is the same "blank" LUT presented above but with the linear raw input/output curve overlaid, where the output represents the application of both the Neutral TRC and the sRGB 1/2.4 gamma:
 
-![Blank LUT, with raw input/output curve via Neutral TRC and sRGB overlaid](https://photos.smugmug.com/photos/i-w7RpQzp/0/62e31bdf/L/i-w7RpQzp-L.png)
+![Blank LUT, with raw input/output curve via Neutral TRC and sRGB overlaid](docs/Nikon_Picture_Control_LUT_Default_Values_vs_Raw_Input_Output.png)
 
 The LUT input/output is in blue and raw input/output in red. Note how the 8.8% raw input corresponds to 50% input brightness into the LUT, which for a "blank" LUT also corresponds to 50% output brightness. For example, an 8.8% linear raw value is transformed via the TRC and sRGB 1/2.4 gamma as an output value of 50%, which becomes the 50% input value in the LUT. The output value of the LUT is also in sRGB 1/2.4 gamma. That means any values you change to the LUT will be non-linear, since they represent the output of a gamma curve. For example, adding a fixed value to all 257 output LUT values will not increase the brightness evenly across the full tonal range but instead increase the brightness non-linearly, with the shadows receiving a greater boost than the midtones and highlights. The LUT is effectively like working with an sRGB image in Photoshop but without the benefit of colorspace-aware tools.
 
@@ -78,5 +78,6 @@ Special thanks to the following individuals:
  - [Bill Claff](https://www.photonstophotos.net/)
  - [Iliah Borg](https://www.rawdigger.com/)
  - [Jack Hogan](https://www.strollswithmydog.com/)
+
 
 
